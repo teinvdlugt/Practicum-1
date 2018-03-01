@@ -36,6 +36,7 @@ print(pcov)
 print("====== ODR =======")
 from scipy import odr, power
 import matplotlib.pyplot as plt
+import matplotlib.ticker as plticker
 
 
 def formula(B, x):
@@ -59,7 +60,9 @@ output.pprint()  # Prints summary of results
 
 # Plot results
 # First plot measured data points:
-plt.plot(xdata, ydata, 'ro')
+# plt.plot(xdata, ydata, 'ro')
+plt.errorbar(xdata, ydata, yerr, xerr, 'ro', elinewidth=.5, markersize=4, capsize=1)
+
 # Plot fitted curve
 x = np.linspace(1, 2, 100)
 y = formula(output.beta, x)
@@ -69,4 +72,5 @@ plt.title('Slingerproef')
 plt.xlabel('Lengte slinger L (m)')
 plt.ylabel('Periode T (s)')
 plt.legend()
+plt.grid()
 plt.show()
